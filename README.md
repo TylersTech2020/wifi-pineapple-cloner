@@ -1,6 +1,7 @@
 # Universal Wifi pineapple hardware cloner
 
-The Pineapple NANO and TETRA were excellent security hardware that in 2020 reached the end of its life. So to give a new life to this platform in more modern hardware i made these scripts. 
+The Pineapple NANO and TETRA were excellent security hardware but in 2020 they reached their end of life.
+So to give a new life to this platform in more modern hardware, I've made these scripts. 
 
 
 ## Build steps
@@ -45,8 +46,8 @@ $ tar xJf openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64.tar.xz
 $ cd openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64
 
 # based on step 2 data!
-$ make image PROFILE=gl-ar150 PACKAGES="procps-ng-pkill kmod-usb-storage terminfo iwinfo openssh-sftp-server php7-mod-openssl libbz2-1.0 kmod-usb-net-asix-ax88179 wget kmod-usb-core kmod-crypto-manager kmod-usb-net-qmi-wwan chat kmod-rtl8187 kmod-nf-reject6 nano kmod-crypto-aead kmod-usb-wdm kmod-rt2800-usb openssl-util kmod-nf-flow kmod-lib-crc-ccitt kmod-rtlwifi kmod-mt76-usb getrandom openssh-server ssmtp libusb-1.0-0 kmod-nf-nathelper kmod-pppoe kmod-rt2x00-usb libiconv-full2 procps-ng-ps kmod-pppox kmod-ipt-conntrack kmod-nf-reject base-files kmod-nf-nat php7-cgi kmod-crypto-crc32c macchanger kmod-rt2800-lib php7-mod-sockets php7-mod-hash libnl-route200 autossh uboot-envtools kmod-usb-ohci kmod-mii dnsmasq libuclient20160123 usbutils libnl200 kmod-rt2x00-lib hostapd-utils libelf1 kmod-usb-ehci libintl libiwinfo20181126 kmod-usb-net-rndis libmbedtls12 block-mount kmod-fs-vfat kmod-usb2 firewall libxml2 kmod-nf-ipt kmod-rtlwifi-usb kmod-usb-net-sierrawireless tcpdump php7-mod-mbstring kmod-ip6tables odhcp6c uclient-fetch kmod-ath9k ethtool uci kmod-fs-ext4 kmod-mt76x2-common kmod-ledtrig-timer php7-mod-json kmod-usb-net-asix libgmp10 mtd odhcpd-ipv6only wpad usb-modeswitch php7-mod-session urandom-seed libffi ppp kmod-leds-gpio kmod-gpio-button-hotplug logd rtl-sdr libreadline8 kmod-usb-net kmod-usb-net-smsc95xx kmod-rtl8192c-common libopenssl1.1 openssh-keygen python-sqlite3 kmod-rtl8192cu uclibcxx iptables kmod-mt76x02-usb libnl-core200 kmod-libphy kmod-mt76x2u kmod-ipt-core e2fsprogs kmod-ledtrig-default-on kmod-usb-acm ca-certificates kmod-ppp libopenssl-conf php7-fpm libncurses6 netcat libpcap1 python-openssl kmod-nf-conntrack php7 libcurl4 kmod-fs-nfs ip6tables kmod-nf-ipt6 mt7601u-firmware at python-logging ncat kmod-nf-conntrack6 kmod-scsi-generic kmod-usb-uhci kmod-ath kmod-mt76-core kmod-ath9k-htc openssh-client usbreset libltdl7 php7-mod-sqlite3 kmod-usb-storage-extras libnl-nf200 iperf3 kmod-eeprom-93cx6 wireless-tools kmod-ipt-offload kmod-usb-net-cdc-ether kmod-scsi-core urngd kmod-slhc libnet-1.2.x nginx libustream-mbedtls20150806 ppp-mod-pppoe kmod-ipt-nat libnl-genl200 kmod-ledtrig-netdev busybox libatomic1 -wpad-basic -dropbear" FILES=../files/
-cp bin/targets/ar71xx/generic/openwrt-19.07.2-ar71xx-generic-gl-ar150-squashfs-sysupgrade.bin ../gl-ar150-pineapple-nano.bin
+$ make image PROFILE=gl-ar150 PACKAGES="at autossh base-files block-mount ca-certificates chat dnsmasq e2fsprogs ethtool firewall getrandom hostapd-utils ip6tables iperf3 iptables iwinfo kmod-ath kmod-ath9k kmod-ath9k-htc kmod-crypto-aead kmod-crypto-crc32c kmod-crypto-manager kmod-eeprom-93cx6 kmod-fs-ext4 kmod-fs-nfs kmod-fs-vfat kmod-gpio-button-hotplug kmod-ip6tables kmod-ipt-conntrack kmod-ipt-core kmod-ipt-nat kmod-ipt-offload kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-lib-crc-ccitt kmod-libphy kmod-mii kmod-mt76-core kmod-mt76-usb kmod-mt76x02-usb kmod-mt76x2-common kmod-mt76x2u kmod-nf-conntrack kmod-nf-conntrack6 kmod-nf-flow kmod-nf-ipt kmod-nf-ipt6 kmod-nf-nat kmod-nf-nathelper kmod-nf-reject kmod-nf-reject6 kmod-ppp kmod-pppoe kmod-pppox kmod-rt2800-lib kmod-rt2800-usb kmod-rt2x00-lib kmod-rt2x00-usb kmod-rtl8187 kmod-rtl8192c-common kmod-rtl8192cu kmod-rtlwifi kmod-rtlwifi-usb kmod-scsi-core kmod-scsi-generic kmod-slhc kmod-usb-acm kmod-usb-core kmod-usb-ehci kmod-usb-net kmod-usb-net-asix kmod-usb-net-asix-ax88179 kmod-usb-net-cdc-ether kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-net-smsc95xx kmod-usb-ohci kmod-usb-storage kmod-usb-storage-extras kmod-usb-uhci kmod-usb-wdm kmod-usb2 libbz2-1.0 libcurl4 libelf1 libffi libgmp10 libiconv-full2 libintl libiwinfo20181126 libltdl7 libmbedtls12 libncurses6 libnet-1.2.x libnl-core200 libnl-genl200 libnl-nf200 libnl-route200 libnl200 libopenssl-conf libopenssl1.1 libpcap1 libreadline8 libuclient20160123 libusb-1.0-0 libustream-mbedtls20150806 libxml2 logd macchanger mt7601u-firmware mtd nano ncat netcat nginx odhcp6c odhcpd-ipv6only openssh-client openssh-keygen openssh-server openssh-sftp-server openssl-util php7 php7-cgi php7-fpm php7-mod-hash php7-mod-json php7-mod-mbstring php7-mod-openssl php7-mod-session php7-mod-sockets php7-mod-sqlite3 ppp ppp-mod-pppoe procps-ng-pkill procps-ng-ps python-logging python-openssl python-sqlite3 rtl-sdr ssmtp tcpdump terminfo uboot-envtools uci uclibcxx uclient-fetch urandom-seed urngd usb-modeswitch usbreset usbutils wget wireless-tools wpad busybox libatomic1 -wpad-basic -dropbear -odhcp6c -odhcpd-ipv6only" FILES=../files/
+$ cp bin/targets/ar71xx/generic/openwrt-19.07.2-ar71xx-generic-gl-ar150-squashfs-sysupgrade.bin ../gl-ar150-pineapple-nano.bin
 ```
 
 5. Flash the target hardware with this custom firmware!
@@ -55,10 +56,10 @@ cp bin/targets/ar71xx/generic/openwrt-19.07.2-ar71xx-generic-gl-ar150-squashfs-s
 ## Important notes
 
 1. The original pineapple binaries are compiled with mips24kc and BE endianness.
-So your target hardware must be support instructionset mips24kc with BE endianness. [List of hardware](https://openwrt.org/docs/techref/instructionset/mips_24kc).
+So your target hardware must support instructionset mips24kc with BE endianness. [List of hardware](https://openwrt.org/docs/techref/instructionset/mips_24kc).
 
 2. The original pineapple binaries are compiled with SSP ([Stack-Smashing Protection](https://openwrt.org/docs/guide-user/security/security-features)) 
-So your version has to support it so as not to have this type of errors:
+Your version has to support it, so as not to have this type of errors:
 ```
 [    7.383577] kmodloader: loading kernel modules from /etc/modules-boot.d/*
 [    8.052737] crypto_hash: Unknown symbol __stack_chk_guard (err 0)
@@ -66,7 +67,7 @@ So your version has to support it so as not to have this type of errors:
 ```
 
 3. WiFi Pineapple use a modified version of: /lib/netifd/wireless/mac80211.sh /lib/netifd/hostapd.sh /lib/wifi/mac80211.sh
-So you may have to make yours based on these.
+You may have to make yours based on these.
 
 4. If you are stuck at the message "The WiFi Pineapple is still booting" don't panic, this is a known issue with running the WiFi Pineapple firmware on the AR150. All you have to do is ssh into the AR150 with the username root and password you set originally when you booted the AR150 right out of the box.
 Executing the command jffs2reset -y && reboot should resolve your problems. 

@@ -13,9 +13,9 @@
 /etc/init.d/pineapd
 /etc/init.d/pineapple
 /etc/init.d/resetssids
-/etc/nginx
+/etc/nginx/nginx.conf
 /etc/opkg
-/etc/php7-fpm.d
+/etc/php7-fpm.d/www.conf
 /etc/pineape
 /etc/pineapple
 /etc/rc.button/BTN_1
@@ -24,7 +24,7 @@
 /etc/rc.d/S98pineapple
 /etc/rc.d/S99cc-client
 /etc/rc.d/S99pineapd
-/etc/ssh
+/etc/ssh/sshd_config
 /etc/ssl
 /etc/uci-defaults/90-firewall.sh
 /etc/uci-defaults/91-fstab.sh

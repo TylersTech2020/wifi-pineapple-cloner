@@ -27,11 +27,18 @@ cp fixs/nano/pineap files/usr/bin/pineap
 chmod +x files/usr/bin/pineap
 
 printf "Other fixs\n"
+# fix default password: root
+cp fixs/nano/shadow files/etc/shadow
+
 # fix pendrive hotplug
-cp fixs/nano/20-sd-ar150-fix files/etc/hotplug.d/block/20-sd-ar150-fix
+cp fixs/nano/20-sd-nano-fix files/etc/hotplug.d/block/20-sd-nano-fix
 
 # fix LAN and WAN ports. No more swapped ports on ar150 
 cp fixs/nano/02-network-ar150-fix files/etc/uci-defaults/02-network-ar150-fix
+
+# fix mobile view
+cp fixs/panel/index.html files/pineapple/index.html
+cp fixs/panel/css/main.css files/pineapple/css/main.css
 
 # fix png file size
 cp fixs/panel/img/browser_chrome.png files/pineapple/img/browser_chrome.png
