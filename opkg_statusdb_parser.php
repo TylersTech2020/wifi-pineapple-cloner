@@ -63,6 +63,7 @@ function isValidPackage($name)
 		'libwifi',
 		'resetssids',
 		'http_sniffer',
+		'log_daemon',
 	];
 
 	// only kmod

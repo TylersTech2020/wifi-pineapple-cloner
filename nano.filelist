@@ -25,7 +25,7 @@
 /etc/rc.d/S99cc-client
 /etc/rc.d/S99pineapd
 /etc/ssh/sshd_config
-/etc/ssl
+/etc/ssl/openssl.cnf
 /etc/uci-defaults/90-firewall.sh
 /etc/uci-defaults/91-fstab.sh
 /etc/uci-defaults/92-system.sh

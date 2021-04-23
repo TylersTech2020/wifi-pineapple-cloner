@@ -23,10 +23,8 @@ do
     if [ -d "$FROM_FOLDER$FILE" ]; then
         cp -R "$FROM_FOLDER$FILE" "$TO_FOLDER$FILE"
     else
-        cp "$FROM_FOLDER$FILE" "$TO_FOLDER$FILE"
+        cp -P "$FROM_FOLDER$FILE" "$TO_FOLDER$FILE"
     fi
 done
-
-chown -R $USER "$TO_FOLDER"
 
 printf "Files copied: %d\n" $COUNTER

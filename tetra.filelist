@@ -24,7 +24,7 @@
 /etc/rc.d/S99cc-client
 /etc/rc.d/S99pineapd
 /etc/ssh/sshd_config
-/etc/ssl
+/etc/ssl/openssl.cnf
 /etc/uci-defaults/90-firewall.sh
 /etc/uci-defaults/91-fstab.sh
 /etc/uci-defaults/92-system.sh
@@ -53,7 +53,6 @@
 /usr/bin/aircrack-ng
 /usr/bin/pineap
 /usr/bin/uuencode
-/usr/lib/python2.7/encodings
 /usr/lib/libaircrack-ce-wpa-1.5.2.so
 /usr/lib/libaircrack-ce-wpa.la
 /usr/lib/libaircrack-ce-wpa.so
