@@ -40,8 +40,6 @@
 /etc/php7-fpm.conf
 /etc/rc.local
 /etc/shadow
-/lib/netifd/wireless/mac80211.sh
-/lib/netifd/hostapd.sh
 /lib/preinit/30_failsafe_wait
 /lib/preinit/40_run_failsafe_hook
 /lib/upgrade/keep.d/busybox

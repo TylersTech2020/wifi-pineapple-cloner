@@ -16,6 +16,7 @@ $ wget https://www.wifipineapple.com/downloads/nano/latest -O nanofw.bin
 $ fmk-tool/extract-firmware.sh nanofw.bin
 $ sudo chown -R $USER fmk
 $ mv fmk/rootfs rootfs-nano
+$ rm -rf fmk
 ```
 
 2. Get opkg packages from openwrt file system
