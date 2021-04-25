@@ -38,8 +38,8 @@ sed -i "s/cat \/proc\/cpuinfo | grep 'machine'/echo 'nano'/" files/usr/bin/pinea
 
 printf "Leds path fix\n"
 sed -i 's/..led (C) Hak5 2018/device="NANO"/' files/sbin/led
-sed -i 's/wifi-pineapple-nano:blue:/gl-ar150:green:wan:/' files/sbin/led
-sed -i 's/wifi-pineapple-nano:blue:/gl-ar150:green:wan:/' files/etc/uci-defaults/97-pineapple.sh
+sed -i 's/wifi-pineapple-nano:blue:system/gl-ar150:orange:wlan/' files/sbin/led
+sed -i 's/wifi-pineapple-nano:blue:system/gl-ar150:orange:wlan/' files/etc/uci-defaults/97-pineapple.sh
 
 
 printf "Pineapd fix\n"

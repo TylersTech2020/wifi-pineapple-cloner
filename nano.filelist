@@ -1,4 +1,5 @@
 /bin/bash
+/bin/busybox
 /etc/config/autossh
 /etc/hotplug.d/block/20-sd
 /etc/hotplug.d/iface/20-autossh
