@@ -15,17 +15,17 @@ if (!isset($argv[1])) {
     exit(1);
 }
 
-function processFile($fileName, $showEssentials)
+function processFile($filePath, $showEssentials, $showDependencies)
 {
 	$block = [];
-	$output = [];
+	$packagesData = [];
 
-	foreach (file($fileName) as $line) {
+	foreach (file($filePath) as $line) {
 		$clean = trim($line);
 
 		if (empty($clean)) {
 			if (count($block) > 0) {
-				$output[] = $block;
+				$packagesData[] = $block;
 				$block = [];
 			}
 		} else {
@@ -38,15 +38,18 @@ function processFile($fileName, $showEssentials)
 
 	// esto no tendia que pasar nunca porque el status file viene con varios saltos de linea al final
 	if (count($block) > 0) {
-		$output[] = $block;		
+		$packagesData[] = $block;		
 	}
 
-	return cleanInstallData($output, $showEssentials);
+	return cleanInstallData($packagesData, $showEssentials, $showDependencies);
 }
 
-function cleanInstallData($output, $showEssentials)
+function cleanInstallData($output, $showEssentials, $showDependencies)
 {
-	$final = [];
+	$packages = [];
+	$depends = [];
+
+	// generate packages and depends array
 	foreach ($output as $data) {
 		if ( 
 			!isset($data['Auto-Installed']) && 
@@ -58,13 +61,37 @@ function cleanInstallData($output, $showEssentials)
 					isset($data['Essential']) && $showEssentials
 				)
 			) {
-				$final[] = $data['Package'];
+				$packages[] = $data['Package'];
+
+				if (isset($data['Depends'])) {
+					foreach (explode(',', $data['Depends']) as $dependency) {
+						$dependency = trim($dependency);
+						if (!in_array($dependency, $depends)) {
+							$depends[] = $dependency;
+						}
+					}
+				}
 			}
 		}
 	}
 
-	sort($final);
-	return $final;
+	// show all installed packages
+	if ($showDependencies) {
+		sort($packages);
+		return $packages;
+	}
+
+	// show only target packages
+	$targetPackages = [];
+	foreach ($packages as $package) {
+		if (!in_array($package, $depends)) {
+			$targetPackages[] = $package;
+		}
+	}
+
+	//var_dump($depends);
+	sort($targetPackages);
+	return $targetPackages;
 }
 
 function isValidPackage($name)
@@ -93,13 +120,13 @@ function isValidPackage($name)
 
 // from /usr/lib/opkg/status
 $statusFile = $argv[1];
-$statusData = processFile($statusFile, false);
+$statusData = processFile($statusFile, false, false);
 
 echo "======== Packages ========\n";
 echo "Total: " . count($statusData) . "\n";
 echo implode(' ', $statusData);
 
-$statusDataEssentials = processFile($statusFile, true);
+$statusDataEssentials = processFile($statusFile, true, false);
 $essentialPackages = [];
 foreach ($statusDataEssentials as $key) {
 	if (!in_array($key, $statusData)) {
