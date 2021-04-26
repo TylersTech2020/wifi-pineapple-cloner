@@ -1,6 +1,20 @@
 <?php 
 # by DSR! from https://github.com/xchwarze/wifi-pineapple-cloner
 
+error_reporting(E_ALL);
+
+if (!isset($_SERVER['argv']) && !isset($argv)) {
+    echo "Please enable the register_argc_argv directive in your php.ini\n";
+    exit(1);
+} elseif (!isset($argv)) {
+    $argv = $_SERVER['argv'];
+}
+
+if (!isset($argv[1])) {
+    echo "Argument expected: path to opkg status file\n";
+    exit(1);
+}
+
 function processFile($fileName, $showEssentials)
 {
 	$block = [];
@@ -78,7 +92,7 @@ function isValidPackage($name)
 
 
 // from /usr/lib/opkg/status
-$statusFile = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'status';
+$statusFile = $argv[1];
 $statusData = processFile($statusFile, false);
 
 echo "======== Packages ========\n";
