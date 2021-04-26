@@ -73,16 +73,4 @@
 /usr/sbin/log_daemon
 /usr/sbin/pineapd
 /usr/sbin/resetssids
-/usr/sbin/ubiattach
-/usr/sbin/ubiblock
-/usr/sbin/ubicrc32
-/usr/sbin/ubidetach
-/usr/sbin/ubiformat
-/usr/sbin/ubimkvol
-/usr/sbin/ubinfo
-/usr/sbin/ubinize
-/usr/sbin/ubirename
-/usr/sbin/ubirmvol
-/usr/sbin/ubirsvol
-/usr/sbin/ubiupdatevol
 /www
