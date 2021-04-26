@@ -1,9 +1,11 @@
 <?php
 # by DSR! from https://github.com/xchwarze/wifi-pineapple-cloner
 
-use MatthiasMullie\Minify;
 require_once __DIR__ . '/deps/vendor/autoload.php';
 require_once __DIR__ . '/deps/PackPHP.php'; //from: https://github.com/hareko/php-application-packer
+
+use MatthiasMullie\Minify;
+use voku\helper\HtmlMin;
 
 error_reporting(E_ALL);
 
@@ -39,7 +41,8 @@ function getDirContents($dir) {
 }
 
 
-echo "******* Project packer by DSR! *******\n\n";
+echo "******* Project packer by DSR! *******\n";
+echo "php deps: sudo apt-get update && sudo apt install php-xml php-mbstring\n\n";
 $counter = 0;
 
 echo "Target folder: {$argv[1]}\n";
@@ -63,6 +66,13 @@ foreach (getDirContents($argv[1]) as $file) {
                     $counter++;
                     $file_contents = file_get_contents($file);
                     $minified = PackPHP::minify($file_contents, ['min' => true]);
+                    file_put_contents($file, $minified);
+                    break;
+                case 'html':
+                    $counter++;                    
+                    $file_contents = file_get_contents($file);
+                    $minifier = new HtmlMin();
+                    $minified = $minifier->minify($file_contents);
                     file_put_contents($file, $minified);
                     break;
             }        
