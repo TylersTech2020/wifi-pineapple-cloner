@@ -29,7 +29,7 @@ sed -i 's/..Get Device/device="NANO"/' files/etc/rc.local
 sed -i 's/..Get Version and Device/device="TETRA"/' files/etc/uci-defaults/90-firewall.sh
 sed -i 's/..Get Version and Device/device="NANO"/' files/etc/uci-defaults/91-fstab.sh
 sed -i 's/..Get Version and Device/device="TETRA"/' files/etc/uci-defaults/95-network.sh
-sed -i 's/..Get Version and Device/device="NANO"/' files/etc/uci-defaults/97-pineapple.sh
+sed -i 's/..Get device type/device="NANO"/' files/etc/uci-defaults/92-system.sh
 
 # Panel changes
 sed -i 's/tetra/nulled/' files/pineapple/js/directives.js
@@ -45,6 +45,7 @@ sed -i "s/cat \/proc\/cpuinfo | grep 'machine'/echo 'tetra'/" files/usr/bin/pine
 printf "Leds path fix\n"
 sed -i 's/..led (C) Hak5 2018/device="NANO"/' files/sbin/led
 sed -i 's/wifi-pineapple-nano:blue:system/tp-link:green:wps/' files/sbin/led
+sed -i 's/wifi-pineapple-nano:blue:system/tp-link:green:wps/' files/etc/uci-defaults/92-system.sh
 sed -i 's/wifi-pineapple-nano:blue:system/tp-link:green:wps/' files/etc/uci-defaults/97-pineapple.sh
 
 
@@ -98,9 +99,6 @@ cp fixs/common/shadow files/etc/shadow
 cp fixs/tetra/20-sd-tetra-fix files/etc/hotplug.d/block/20-sd-tetra-fix
 rm files/etc/hotplug.d/block/20-sd
 rm files/etc/hotplug.d/usb/30-sd
-
-# system config
-cp fixs/common/92-system.sh files/etc/uci-defaults/92-system.sh
 
 # fix hardware name in banner
 sed -i 's/DEVICE\/$device/DEVICE\/TETRA/' files/etc/uci-defaults/97-pineapple.sh

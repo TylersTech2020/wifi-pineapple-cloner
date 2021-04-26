@@ -30,6 +30,7 @@ sed -i 's/..Get Version and Device/device="TETRA"/' files/etc/uci-defaults/90-fi
 sed -i 's/..Get Version and Device/device="NANO"/' files/etc/uci-defaults/91-fstab.sh
 sed -i 's/..Get Version and Device/device="TETRA"/' files/etc/uci-defaults/95-network.sh
 sed -i 's/..Get Version and Device/device="NANO"/' files/etc/uci-defaults/97-pineapple.sh
+sed -i 's/..Get device type/device="NANO"/' files/etc/uci-defaults/92-system.sh
 
 # Panel changes
 sed -i 's/unknown/nano/' files/pineapple/api/pineapple.php
@@ -39,6 +40,7 @@ sed -i "s/cat \/proc\/cpuinfo | grep 'machine'/echo 'nano'/" files/usr/bin/pinea
 printf "Leds path fix\n"
 sed -i 's/..led (C) Hak5 2018/device="NANO"/' files/sbin/led
 sed -i 's/wifi-pineapple-nano:blue:system/gl-ar150:orange:wlan/' files/sbin/led
+sed -i 's/wifi-pineapple-nano:blue:system/gl-ar150:orange:wlan/' files/etc/uci-defaults/92-system.sh
 sed -i 's/wifi-pineapple-nano:blue:system/gl-ar150:orange:wlan/' files/etc/uci-defaults/97-pineapple.sh
 
 
@@ -92,9 +94,6 @@ cp fixs/common/shadow files/etc/shadow
 cp fixs/nano/20-sd-nano-fix files/etc/hotplug.d/block/20-sd-nano-fix
 rm files/etc/hotplug.d/block/20-sd
 rm files/etc/hotplug.d/usb/30-sd
-
-# system config
-cp fixs/common/92-system.sh files/etc/uci-defaults/92-system.sh
 
 # fix LAN and WAN ports. No more swapped ports on ar150 
 cp fixs/nano/02-network-ar150-fix files/etc/uci-defaults/02-network-ar150-fix
