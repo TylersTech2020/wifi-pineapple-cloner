@@ -19,13 +19,10 @@ $ mv fmk/rootfs rootfs-nano
 $ rm -rf fmk
 ```
 
-2. Get opkg packages from openwrt file system
+2. Get opkg packages list from openwrt file system
 ```
-# get opkg status file
-$ cp rootfs-nano/usr/lib/opkg/status status
-
-# get packages
-$ php opkg_statusdb_parser.php
+# get packages list
+$ php opkg_statusdb_parser.php rootfs-nano/usr/lib/opkg/status
 ```
 
 3. Generate openwrt extra files
