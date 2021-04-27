@@ -71,7 +71,7 @@ cp fixs/panel/css/main.css files/pineapple/css/main.css
 # change notification timer (10 req vs 3 req)
 sed -i 's/6000/20000/' files/pineapple/js/controllers.js
 
-# fix png file size
+# decrease png file size
 cp fixs/panel/img/browser_chrome.png files/pineapple/img/browser_chrome.png
 cp fixs/panel/img/browser_ff.png files/pineapple/img/browser_ff.png
 cp fixs/panel/img/browser_ie.png files/pineapple/img/browser_ie.png
@@ -89,6 +89,9 @@ truncate -s 0 files/pineapple/modules/Setup/license.txt
 printf "Other fixs\n"
 # fix default password: root
 cp fixs/common/shadow files/etc/shadow
+
+# fix network config
+cp fixs/common/95-network.sh files/etc/uci-defaults/95-network.sh
 
 # fix pendrive hotplug
 cp fixs/nano/20-sd-nano-fix files/etc/hotplug.d/block/20-sd-nano-fix
