@@ -90,13 +90,16 @@ printf "Other fixs\n"
 # fix default password: root
 cp fixs/common/shadow files/etc/shadow
 
-# fix network config
+# universal network config
 cp fixs/common/95-network.sh files/etc/uci-defaults/95-network.sh
 
 # fix pendrive hotplug
 cp fixs/nano/20-sd-nano-fix files/etc/hotplug.d/block/20-sd-nano-fix
 rm files/etc/hotplug.d/block/20-sd
 rm files/etc/hotplug.d/usb/30-sd
+
+# fix default wifi config for use multiple wifi cards
+cp fixs/common/mac80211.sh files/lib/wifi/mac80211.sh
 
 # fix LAN and WAN ports. No more swapped ports on ar150 
 cp fixs/nano/02-network-ar150-fix files/etc/uci-defaults/02-network-ar150-fix

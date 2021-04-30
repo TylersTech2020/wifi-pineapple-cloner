@@ -95,8 +95,11 @@ printf "Other fixs\n"
 # fix default password: root
 cp fixs/common/shadow files/etc/shadow
 
-# fix network config
+# universal network config
 cp fixs/common/95-network.sh files/etc/uci-defaults/95-network.sh
+
+# fix default wifi config for use multiple wifi cards
+cp fixs/common/mac80211.sh files/lib/wifi/mac80211.sh
 
 # fix pendrive hotplug
 cp fixs/tetra/20-sd-tetra-fix files/etc/hotplug.d/block/20-sd-tetra-fix
