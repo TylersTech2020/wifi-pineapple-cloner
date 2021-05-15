@@ -29,18 +29,9 @@ sed -i 's/..Get Device/device="NANO"/' files/etc/rc.local
 sed -i 's/..Get Version and Device/device="TETRA"/' files/etc/uci-defaults/90-firewall.sh
 sed -i 's/..Get Version and Device/device="NANO"/' files/etc/uci-defaults/91-fstab.sh
 sed -i 's/..Get Version and Device/device="TETRA"/' files/etc/uci-defaults/95-network.sh
+sed -i 's/..Get Version and Device/device="NANO"/' files/etc/uci-defaults/97-pineapple.sh
+
 sed -i 's/..Get device type/device="NANO"/' files/etc/uci-defaults/92-system.sh
-
-# Panel changes
-sed -i 's/tetra/nulled/' files/pineapple/js/directives.js
-sed -i 's/tetra/nulled/' files/pineapple/modules/ModuleManager/js/module.js
-sed -i 's/nano/tetra/' files/pineapple/modules/Advanced/module.html
-sed -i 's/nano/tetra/' files/pineapple/modules/ModuleManager/js/module.js
-sed -i 's/nano/tetra/' files/pineapple/modules/Reporting/js/module.js
-sed -i 's/nano/tetra/' files/pineapple/modules/Reporting/api/module.php
-sed -i 's/unknown/tetra/' files/pineapple/api/pineapple.php
-sed -i "s/cat \/proc\/cpuinfo | grep 'machine'/echo 'tetra'/" files/usr/bin/pineapple/site_survey
-
 
 printf "Leds path fix\n"
 sed -i 's/..led (C) Hak5 2018/device="NANO"/' files/sbin/led
@@ -69,22 +60,22 @@ chmod +x files/usr/sbin/wpad
 
 
 printf "Panel fixs\n"
-# fix mobile view
-cp fixs/panel/index.html files/pineapple/index.html
-cp fixs/panel/css/main.css files/pineapple/css/main.css
+# update panel code
+rm -rf files/pineapple
+wget -q https://github.com/xchwarze/wifi-pineapple-panel/archive/refs/heads/master.zip -O updated-panel.zip
+unzip -q updated-panel.zip
+cp -r wifi-pineapple-panel-master/src/* files/
+rm -rf wifi-pineapple-panel-master updated-panel.zip
 
-# change notification timer (10 req vs 3 req)
-sed -i 's/6000/20000/' files/pineapple/js/controllers.js
-
-# decrease png file size
-cp fixs/panel/img/browser_chrome.png files/pineapple/img/browser_chrome.png
-cp fixs/panel/img/browser_ff.png files/pineapple/img/browser_ff.png
-cp fixs/panel/img/browser_ie.png files/pineapple/img/browser_ie.png
-cp fixs/panel/img/browser_opera.png files/pineapple/img/browser_opera.png
-cp fixs/panel/img/browser_safari.png files/pineapple/img/browser_safari.png
-cp fixs/panel/img/logo.png files/pineapple/img/logo.png
-cp fixs/panel/img/logout.png files/pineapple/img/logout.png
-cp fixs/panel/img/notify.png files/pineapple/img/notify.png
+# Panel changes
+sed -i 's/tetra/nulled/' files/pineapple/js/directives.js
+sed -i 's/tetra/nulled/' files/pineapple/modules/ModuleManager/js/module.js
+sed -i 's/nano/tetra/' files/pineapple/modules/Advanced/module.html
+sed -i 's/nano/tetra/' files/pineapple/modules/ModuleManager/js/module.js
+sed -i 's/nano/tetra/' files/pineapple/modules/Reporting/js/module.js
+sed -i 's/nano/tetra/' files/pineapple/modules/Reporting/api/module.php
+sed -i 's/unknown/tetra/' files/pineapple/api/pineapple.php
+sed -i "s/cat \/proc\/cpuinfo | grep 'machine'/echo 'tetra'/" files/usr/bin/pineapple/site_survey
 
 # fix docs size
 truncate -s 0 files/pineapple/modules/Setup/eula.txt
