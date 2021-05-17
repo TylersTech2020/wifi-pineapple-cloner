@@ -64,8 +64,17 @@ printf "Panel fixs\n"
 rm -rf files/pineapple
 wget -q https://github.com/xchwarze/wifi-pineapple-panel/archive/refs/heads/master.zip -O updated-panel.zip
 unzip -q updated-panel.zip
+
 cp -r wifi-pineapple-panel-master/src/* files/
 rm -rf wifi-pineapple-panel-master updated-panel.zip
+
+chmod +x files/etc/init.d/pineapd
+chmod +x files/etc/uci-defaults/93-pineap.sh
+chmod +x files/pineapple/modules/Advanced/formatSD/format_sd
+chmod +x files/pineapple/modules/Help/files/debug
+chmod +x files/pineapple/modules/PineAP/executable/executable
+chmod +x files/pineapple/modules/Reporting/files/reporting
+rm -f files/pineapple/fix-executables.sh
 
 # Panel changes
 sed -i 's/tetra/nulled/' files/pineapple/js/directives.js
