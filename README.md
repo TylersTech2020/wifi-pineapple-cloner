@@ -7,47 +7,47 @@ So to give a new life to this platform in more modern hardware, I've made these 
 ## Build steps
 
 1. Unpack firmware for get file system
-```
+```bash
 # get fmk tool
-$ git clone https://github.com/rampageX/firmware-mod-kit fmk-tool
+git clone https://github.com/rampageX/firmware-mod-kit fmk-tool
 
 # get target firmware (example pineapple nano)
-$ wget https://www.wifipineapple.com/downloads/nano/latest -O nanofw.bin
-$ fmk-tool/extract-firmware.sh nanofw.bin
-$ sudo chown -R $USER fmk
-$ mv fmk/rootfs rootfs-nano
-$ rm -rf fmk
+wget https://www.wifipineapple.com/downloads/nano/latest -O nanofw.bin
+fmk-tool/extract-firmware.sh nanofw.bin
+sudo chown -R $USER fmk
+mv fmk/rootfs rootfs-nano
+rm -rf fmk
 ```
 
 2. Get opkg packages list from openwrt file system
-```
+```bash
 # get packages list
-$ php opkg_statusdb_parser.php rootfs-nano/usr/lib/opkg/status
+php opkg_statusdb_parser.php rootfs-nano/usr/lib/opkg/status
 ```
 
 3. Generate openwrt extra files
-```
+```bash
 # copy pineapple files
-$ chmod +x copier.sh
-$ ./copier.sh
+chmod +x copier.sh
+./copier.sh
 
 # fix files
-$ chmod +x nano-fixer.sh
-$ ./nano-fixer.sh
+chmod +x nano-fixer.sh
+./nano-fixer.sh
 ```
 
 4. Build your custom build
-```
+```bash
 # for this poc use openwrt imagebuilder v19.07.2 for ar71xx
-$ wget https://downloads.openwrt.org/releases/19.07.2/targets/ar71xx/generic/openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64.tar.xz
-$ tar xJf openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64.tar.xz
-$ cd openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64
+wget https://downloads.openwrt.org/releases/19.07.2/targets/ar71xx/generic/openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64.tar.xz
+tar xJf openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64.tar.xz
+cd openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64
 
 # based on step 2 data!
 # ar71xx profile name: gl-ar150
 # ath79 profile name: glinet_gl-ar150
-$ make image PROFILE=gl-ar150 PACKAGES="at autossh base-files block-mount ca-certificates chat dnsmasq e2fsprogs ethtool firewall hostapd-utils ip6tables iperf3 iwinfo kmod-crypto-manager kmod-fs-ext4 kmod-fs-nfs kmod-fs-vfat kmod-gpio-button-hotplug kmod-ipt-offload kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-mt76x2u kmod-nf-nathelper kmod-rt2800-usb kmod-rtl8187 kmod-rtl8192cu kmod-scsi-generic kmod-usb-acm kmod-usb-net-asix kmod-usb-net-asix-ax88179 kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-net-smsc95xx kmod-usb-ohci kmod-usb-storage-extras kmod-usb-uhci kmod-usb2 libbz2-1.0 libcurl4 libelf1 libffi libgmp10 libiconv-full2 libintl libltdl7 libnet-1.2.x libnl200 libreadline8 libustream-mbedtls20150806 libxml2 logd macchanger mt7601u-firmware mtd nano ncat netcat nginx odhcp6c odhcpd-ipv6only openssh-client openssh-server openssh-sftp-server openssl-util php7-cgi php7-fpm php7-mod-hash php7-mod-json php7-mod-mbstring php7-mod-openssl php7-mod-session php7-mod-sockets php7-mod-sqlite3 ppp ppp-mod-pppoe procps-ng-pkill procps-ng-ps python-logging python-openssl python-sqlite3 rtl-sdr ssmtp tcpdump uboot-envtools uci uclibcxx uclient-fetch urandom-seed urngd usb-modeswitch usbreset usbutils wget wireless-tools wpad busybox libatomic1 libstdcpp6 -wpad-basic -dropbear" FILES=../files/
-$ cp bin/targets/ar71xx/generic/openwrt-19.07.2-ar71xx-generic-gl-ar150-squashfs-sysupgrade.bin ../gl-ar150-pineapple-nano.bin
+make image PROFILE=gl-ar150 PACKAGES="at autossh base-files block-mount ca-certificates chat dnsmasq e2fsprogs ethtool firewall hostapd-utils ip6tables iperf3 iwinfo kmod-crypto-manager kmod-fs-ext4 kmod-fs-nfs kmod-fs-vfat kmod-gpio-button-hotplug kmod-ipt-offload kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-mt76x2u kmod-nf-nathelper kmod-rt2800-usb kmod-rtl8187 kmod-rtl8192cu kmod-scsi-generic kmod-usb-acm kmod-usb-net-asix kmod-usb-net-asix-ax88179 kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-net-smsc95xx kmod-usb-ohci kmod-usb-storage-extras kmod-usb-uhci kmod-usb2 libbz2-1.0 libcurl4 libelf1 libffi libgmp10 libiconv-full2 libintl libltdl7 libnet-1.2.x libnl200 libreadline8 libustream-mbedtls20150806 libxml2 logd macchanger mt7601u-firmware mtd nano ncat netcat nginx odhcp6c odhcpd-ipv6only openssh-client openssh-server openssh-sftp-server openssl-util php7-cgi php7-fpm php7-mod-hash php7-mod-json php7-mod-mbstring php7-mod-openssl php7-mod-session php7-mod-sockets php7-mod-sqlite3 ppp ppp-mod-pppoe procps-ng-pkill procps-ng-ps python-logging python-openssl python-sqlite3 rtl-sdr ssmtp tcpdump uboot-envtools uci uclibcxx uclient-fetch urandom-seed urngd usb-modeswitch usbreset usbutils wget wireless-tools wpad busybox libatomic1 libstdcpp6 -wpad-basic -dropbear" FILES=../files/
+cp bin/targets/ar71xx/generic/openwrt-19.07.2-ar71xx-generic-gl-ar150-squashfs-sysupgrade.bin ../gl-ar150-pineapple-nano.bin
 ```
 
 5. Flash the target hardware with this custom firmware!
@@ -60,7 +60,7 @@ So your target hardware must support the instructionset with this endianness. [L
 
 2. The original pineapple binaries are compiled with SSP ([Stack-Smashing Protection](https://openwrt.org/docs/guide-user/security/security-features)) 
 Your version has to support it, so as not to have this type of errors:
-```
+```bash
 [    7.383577] kmodloader: loading kernel modules from /etc/modules-boot.d/*
 [    8.052737] crypto_hash: Unknown symbol __stack_chk_guard (err 0)
 [    8.057461] crypto_hash: Unknown symbol __stack_chk_fail (err 0)
