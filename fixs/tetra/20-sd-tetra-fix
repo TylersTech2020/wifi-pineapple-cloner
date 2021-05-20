@@ -16,7 +16,7 @@ devNum=$(echo $device | awk -F "" '{print $4}')
         ln -s /dev/$device /dev/sdcard/sd$devNum
 
         [[ $devNum == "1" ]] && {
-            logger "== Add pendrive as SD "
+            logger "== Add pendrive as SD"
             umount /sd
             mount /dev/sdcard/sd$devNum /sd && {
                 [[ -e "/sd/etc" ]] || {
@@ -28,7 +28,9 @@ devNum=$(echo $device | awk -F "" '{print $4}')
             if [[ -e "/sd/modules/" ]]; then
                 logger "== Link modules in /sd/modules/"
                 for module in `ls /sd/modules/`; do
-                    ln -s /sd/modules/$module /pineapple/modules/$module
+                    if [[ ! -d "/pineapple/modules/$module" ]]; then
+                        ln -s /sd/modules/$module /pineapple/modules/$module
+                    fi
                 done
             fi
 
