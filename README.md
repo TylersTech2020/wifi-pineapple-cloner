@@ -29,7 +29,7 @@ php opkg_statusdb_parser.php rootfs-nano/usr/lib/opkg/status
 ```bash
 # copy pineapple files
 chmod +x copier.sh
-./copier.sh
+./copier.sh nano.filelist rootfs-nano
 
 # fix files
 chmod +x nano-fixer.sh
