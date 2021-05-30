@@ -72,6 +72,14 @@ You may have to make yours based on these.
 4. If you are stuck at the message "The WiFi Pineapple is still booting" don't panic, this is a known issue with running the WiFi Pineapple firmware on the AR150. All you have to do is ssh into the AR150 with the username root and password you set originally when you booted the AR150 right out of the box.
 Executing the command jffs2reset -y && reboot should resolve your problems. 
 
+5. Busybox applets list:
+```
+# nano: used 114 applets
+ash bash cat chgrp chmod chown cp date dd df dmesg echo egrep false fgrep fsync grep gunzip gzip kill ln lock login ls mkdir mknod mktemp mount mv netmsg netstat nice passwd pidof ping ping6 pwd rm rmdir sed sh sleep sync tar touch traceroute true umount uname vi fdisk halt hwclock ifconfig ip mkswap pivot_root poweroff reboot route start-stop-daemon swapoff swapon switch_root sysctl udhcpc awk basename clear cmp crontab cut dirname du env expr find flock free head hexdump id killall less logger md5sum mkfifo nslookup pgrep printf readlink reset seq sha256sum sort tail tee test time top tr uniq uptime uuencode wc which xargs yes [ [[ brctl chroot crond ntpd 
+
+# tetra: used 118 applets
+ash cat chgrp chmod chown cp date dd df dmesg echo egrep false fgrep fsync grep gunzip gzip kill ln lock login ls mkdir mknod mktemp mount mv netmsg netstat nice passwd pidof ping ping6 pwd rm rmdir sed sh sleep sync tar touch traceroute traceroute6 true umount uname vi zcat fdisk halt hwclock ifconfig ip mkswap pivot_root poweroff reboot route start-stop-daemon swapoff swapon switch_root sysctl udhcpc awk basename bunzip2 bzcat clear cmp crontab cut dirname du env expr find flock free head hexdump id killall less logger md5sum mkfifo nslookup pgrep printf readlink reset seq sha256sum sort strings tail tee test time top tr uniq uptime uuencode wc which xargs yes [ [[ brctl chroot crond ntpd 
+```
 
 ## Recomended setup
 1. GL-AR150 https://www.gl-inet.com/products/gl-ar150/
