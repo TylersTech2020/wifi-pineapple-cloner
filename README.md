@@ -74,12 +74,29 @@ Executing the command jffs2reset -y && reboot should resolve your problems.
 
 5. Busybox applets list:
 ```
+# openwrt: used 118 applets
+ash cat chgrp chmod chown cp date dd df dmesg echo egrep false fgrep fsync grep gunzip gzip kill ln lock login ls mkdir mknod mktemp mount mv netmsg netstat nice passwd pidof ping ping6 ps pwd rm rmdir sed sh sleep sync tar touch traceroute traceroute6 true umount uname vi zcat halt hwclock ifconfig ip mkswap pivot_root poweroff reboot route start-stop-daemon swapoff swapon switch_root sysctl udhcpc awk basename bunzip2 bzcat clear cmp crontab cut dirname du env expr find flock free head hexdump id killall less logger md5sum mkfifo nc nslookup pgrep printf readlink reset seq sha256sum sort strings tail tee test time top tr uniq uptime wc which xargs yes [ [[ brctl chroot crond ntpd 
+
 # nano: used 114 applets
 ash bash cat chgrp chmod chown cp date dd df dmesg echo egrep false fgrep fsync grep gunzip gzip kill ln lock login ls mkdir mknod mktemp mount mv netmsg netstat nice passwd pidof ping ping6 pwd rm rmdir sed sh sleep sync tar touch traceroute true umount uname vi fdisk halt hwclock ifconfig ip mkswap pivot_root poweroff reboot route start-stop-daemon swapoff swapon switch_root sysctl udhcpc awk basename clear cmp crontab cut dirname du env expr find flock free head hexdump id killall less logger md5sum mkfifo nslookup pgrep printf readlink reset seq sha256sum sort tail tee test time top tr uniq uptime uuencode wc which xargs yes [ [[ brctl chroot crond ntpd 
 
 # tetra: used 118 applets
 ash cat chgrp chmod chown cp date dd df dmesg echo egrep false fgrep fsync grep gunzip gzip kill ln lock login ls mkdir mknod mktemp mount mv netmsg netstat nice passwd pidof ping ping6 pwd rm rmdir sed sh sleep sync tar touch traceroute traceroute6 true umount uname vi zcat fdisk halt hwclock ifconfig ip mkswap pivot_root poweroff reboot route start-stop-daemon swapoff swapon switch_root sysctl udhcpc awk basename bunzip2 bzcat clear cmp crontab cut dirname du env expr find flock free head hexdump id killall less logger md5sum mkfifo nslookup pgrep printf readlink reset seq sha256sum sort strings tail tee test time top tr uniq uptime uuencode wc which xargs yes [ [[ brctl chroot crond ntpd 
 ```
+Diferences with Openwrt Busybox build
+```
+Nano build
+--------------------
+Remove: zcat bzcat traceroute6 bunzip2 strings
+Add: bash uuencode fdisk
+
+Tetra build
+--------------------
+Remove: NONE
+Add: uuencode fdisk
+```
+If you don't want to do a custom Busybox build you can install fdisk and mpack.
+Don't forget to refactor the uses of uuencode! (reporting script) 
 
 ## Recomended setup
 1. GL-AR150 https://www.gl-inet.com/products/gl-ar150/
